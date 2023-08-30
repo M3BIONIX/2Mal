@@ -1,0 +1,277 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  justify-content: flex-start;
+  max-width: 100vw; /* Adjusted to 100vw */
+  padding: 2rem;
+}
+
+
+#navbar{
+  display: flex;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#titleText{
+  margin-left: 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  
+}
+
+#drawer{
+  display: flex;
+  flex-direction: column;
+}
+
+#drawerContent {
+  display: flex;
+  align-items: center;
+}
+
+#drawerContainer{
+  display: flex;
+  height: auto;
+  align-items: center;
+}
+
+#drawerButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+
+#drawerText{
+  margin-left: 1rem;
+  font-size: medium;
+  font-family: 'Outfit', sans-serif;
+  position: absolute;
+  margin-top: 13px;
+  
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Start off-screen */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+}
+
+.drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+
+.drawer.open {
+  left: 0; /* Slide into view */
+}
+
+/* Additional styles for the drawer's content */
+.drawer a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.drawer a:hover {
+  background-color: #f5f5f5;
+}
+
+/* Style for the close button */
+.close-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.close-button i {
+  cursor: pointer;
+}
+
+
+
+/* Add this CSS to your existing styles.css file */
+.vccontainer {
+  width: 1000px;
+  height: 50px;
+  position: fixed;
+  bottom: 30px; /* Adjust the distance from the bottom as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+}
+
+.vcsub-container {
+  width: 1199px;
+  height: 63px;
+  position: absolute;
+  left: 52%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: flex-start; /* Align text to the left */
+  align-items: center;
+}
+
+.vcbackground {
+  width: 1199px;
+  height: 63px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: #F5F4F4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 47px;
+}
+
+.vctext {
+  width: calc(100% - 44px - 20px); /* Adjust based on the icon width and spacing */
+  height: 21.48px;
+  position: relative;
+  color: #7D7676;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 70px; /* Space for the icon */
+}
+
+.vcicon {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: -150px; /* Left aligned */
+  top: 40%; /* Vertically centered */
+  transform: translateY(-50%); /* Center adjustment */
+  background: #F7F3F3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9999px;
+  cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+  display: flex;
+  justify-content: center;
+  align-items:left;
+}
+
+.text-input-container {
+  width: calc(100% - 40px); /* Adjust the distance as needed */
+  max-width: 2000px; /* Limit the maximum width */
+  margin: auto; /* Center horizontally */
+  margin-top: 20px; /* Add top margin */
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+}
+
+#textInput {
+  width: 100%;
+  height: calc(100vh - 130px); /* Adjust the height and subtract the container height */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+/* Styles for the main container */
+#live-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 70%;
+    min-height: 150px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+
+/* Styles for buttons */
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+button.red {
+  background-color: #e74c3c;
+}
+
+/* Align buttons horizontally */
+button:not(:last-child) {
+  margin-right: 10px;
+}
+
+#record {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+#recording-message {
+  display: none;
+}
+
+
+#record.recording {
+  
+  animation: recording-animation 1s infinite;
+    transition: transform 1s ease-in-out;
+}
+
+
+@keyframes recording-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#copy {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 1s ease-in-out;
+}
+
+#copy:hover {
+    transform: scale(1.1);
+    transition: transform .2s;
+}
+
+#reset {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.2);
+    transition: transform 1s ease-in-out;
+}
+
+#reset:hover {
+    transform: scale(1.1);
+    transition: transform .2s;
+}
+
+
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
+  <title>Oh this is 2 Mal Window</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Outfit:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="navigation">
+  <div id="navbar">
+    <button id="drawerButton" onclick="openDrawer()">
+      <img src="../assets/menu.png" width="25" height="25" style="margin-top: 5px;" alt="menu" />
+    </button>
+    <img src="../assets/2Mal.jpeg" style="margin-left: 2rem;" width="80" height="80" alt="2MalLogo" id="logo" />
+    <h1 id="titleText">Welcome to 2Mal</h1>
+  </div>
+
+  <div class="entry-content">
+      
+    <div id="live-box" class="words" contenteditable="true"></div>
+   
+    <button id="record">
+      <img style="height:30px;width:30px;" src="../assets/vc.png" alt="Record">
+   </button>
+
+   <button id="copy">
+      <img style="height:30px;width:30px;" src="../assets/copy.png">
+   </button>
+   <button id="reset">
+      <img style="height:30px;width:30px;" src="../assets/eraser.png">
+   </button>
+
+   <div class="drawer" id="drawer">
+    <div class="close-button">
+      <i class="bi bi-x-circle fa-2x" onclick="closeDrawer()"></i>
+    </div>
+    
+    <ul style="margin-top: 1rem;">
+      <li>
+        <a class="drawerContainer" href="#">
+          <span class="icon">
+            <i class="bi bi-house-fill fa-2x"></i>
+          </span>
+          <span class="title" id="drawerText">Home</span>
+    
+        </a>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <a class="drawerContainer" href="#">
+          <span class="icon">
+            <i class="bi bi-pencil-square fa-2x"></i>
+          </span>
+          <span id="drawerText">Notes</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <a class="drawerContainer" href="#">
+          <span class="icon">
+            <i class="bi bi-trash fa-2x"></i>
+          </span>
+          <span class="title" id="drawerText">Trash</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+    <script>
+
+    function openDrawer() {
+        document.getElementById("drawer").style.left = "0";
+      }
+
+    function closeDrawer() {
+        document.getElementById("drawer").style.left = "-300px";
+      }
+
+        const recognition = new webkitSpeechRecognition;
+        recognition.interimResults = false;
+        recognition.continuous = true;
+        recognition.lang = "ml-IN";
+        let isRecording = false;
+        let p = document.createElement("p");
+        const liveBox = document.querySelector("#live-box");
+        var prevText = null;
+        const liveBoxText = document.getElementById("live-box").addEventListener("input", (e) => {
+          if(isRecording)
+          {
+          recognition.stop();
+          recordButton.classList.remove("recording");
+          isRecording = !isRecording;
+          }
+          prevText = p.innerText;
+        });
+        liveBox.appendChild(p);
+
+        recognition.addEventListener("result", (t=>{
+            const e = Array.from(t.results).map((t=>t[0])).map((t=>t.transcript)).join("");
+                     
+            if( prevText != null)
+               p.innerHTML = prevText;
+            else
+                p.innerHTML = "";
+        
+              p.innerHTML += e;
+        }
+        )),
+        recognition.addEventListener("end", (()=>{
+          const t = document.querySelector("#start");
+          if (t) 
+            t.disabled = false;
+            
+        }
+        ));
+
+      const recordButton = document.querySelector("#record");
+      
+      recordButton.addEventListener("click", () => {
+        if (isRecording) {
+          recognition.stop();
+          recordButton.classList.remove("recording");
+          prevText = p.innerText;
+        } else {
+          recognition.start();
+          recordButton.classList.add("recording");
+        }
+        isRecording = !isRecording;
+      });
+
+        const copyButton = document.querySelector("#copy");
+        copyButton.addEventListener("click", (()=>{
+            const t = document.querySelector("#live-box").innerText;
+            navigator.clipboard.writeText(t)
+        }
+        ));
+      
+        const resetButton = document.querySelector("#reset");
+        resetButton.addEventListener("click", (()=>{
+           const text = document.getElementById("live-box").innerText;
+           const words = text.split(" ");
+           words.pop();
+           const erasedText = words.join(" ");
+           document.getElementById("live-box").innerText = erasedText;           
+        }
+        ))
+
+    </script>
+</div>
+</body>
+</html>
